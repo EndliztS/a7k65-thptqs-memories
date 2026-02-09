@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+NZ+Basic:wght@100..400&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  font-size: 20px;
+  line-height: 1.7;
+  font-family: "Playwrite NZ Basic", cursive;
+}
+
+h1 {
+  font-size: 2.4rem;
+}
+
+p {
+  font-size: 1.15rem;
+}
+
+body {
+  width: 100%;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+header {
+  width: 100%;
+  height: 90px;
+  background: #1e1e2f;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  position: relative;
+}
+
+header h1 {
+  margin-right: 30px;
+}
+
+header nav {
+  display: flex;
+  height: 100%;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 0 22px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  transition: all 0.25s ease;
+}
+
+nav a:hover {
+  background: white;
+  color: #1e1e2f;
+}
+
+.hero {
+  width: 100%;
+  min-height: 80vh;
+  overflow-x: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Các hình nền cụ thể cho từng trang */
+.hero-home { background-image: url("https://images.unsplash.com/photo-1529070538774-1843cb3265df"); }
+.hero-10 { background-image: url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b"); }
+.hero-11 { background-image: url("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b"); }
+.hero-12 { background-image: url("https://images.unsplash.com/photo-1529070538774-1843cb3265df"); }
+
+.hero-box {
+  background: none;
+  color: white;
+  padding: 50px;
+  text-align: center;
+  max-width: 900px;
+  z-index: 2;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1;
+}
+
+.section {
+  width: 100%;
+  padding: 80px 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.section img {
+  width: 45%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.blocks {
+  width: 100%;
+  /* Đã xóa đường kẻ dọc và dấu chấm chạy tại đây */
+}
+
+.year-section {
+  width: 100%;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.year-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
+
+.year-content {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.year-content.reverse {
+  flex-direction: row-reverse;
+}
+
+.year-text {
+  max-width: 500px;
+  color: white;
+}
+
+.year-10 { background-image: url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b"); }
+.year-11 { background-image: url("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b"); }
+.year-12 { background-image: url("https://images.unsplash.com/photo-1529070538774-1843cb3265df"); }
+
+.block {
+  text-align: center;
+  color: white;
+  min-width: 250px;
+}
+
+.block a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 30px;
+  border: 2px solid white;
+  border-radius: 30px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.block a:hover {
+  background: white;
+  color: black;
+}
+
+/* Grid kỷ niệm */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 60px 10%;
+}
+
+.card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s;
+}
+.card:hover { transform: translateY(-5px); }
+.card img { width: 100%; height: 250px; object-fit: cover; }
+.card p { padding: 20px; text-align: center; font-weight: bold; }
+
+/* CSS ONLY OVERLAY LOGIC */
+.overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.9);
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  
+  /* Ẩn mặc định */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+/* Khi ID của overlay được nhắm mục tiêu (Target) */
+.overlay:target {
+  opacity: 1;
+  visibility: visible;
+}
+
+.overlay-content {
+  background: white;
+  max-width: 80%;
+  width: 100%;
+  max-height: 90%;
+  display: flex;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.overlay-img { flex: 1.5; background: #000; display: flex; align-items: center; justify-content: center; }
+.overlay-img img { max-width: 100%; max-height: 85vh; object-fit: contain; }
+
+.overlay-info { flex: 1; padding: 40px; border-left: 1px solid #eee; overflow-y: auto; word-break: break-word; }
+.overlay-info h2 { margin-bottom: 20px; color: #1e1e2f; }
+
+.close-btn {
+  position: absolute;
+  top: 15px; right: 20px;
+  font-size: 35px;
+  color: #333;
+  text-decoration: none;
+  line-height: 1;
+  z-index: 10;
+}
+
+footer {
+  background: #1e1e2f;
+  color: white;
+  padding: 50px 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer .socials {
+  display: flex;
+  gap: 20px;
+}
+
+footer .socials a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+/* RESPONSIVE: Khi màn hình nhỏ hơn 900px */
+@media (max-width: 900px) {
+  .year-content, .year-content.reverse {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 0;
+  }
+  
+  .section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .section img {
+    width: 100%;
+  }
+
+  header {
+    height: auto;
+    padding: 20px;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  header nav a {
+    padding: 10px;
+  }
+
+  @media (max-width: 800px) {
+  /* Cho phép nội dung overlay xếp chồng theo chiều dọc trên mobile */
+  .overlay-content { 
+    flex-direction: column; 
+    overflow-y: auto; 
+    max-height: 95vh;
+  }
+  
+  .overlay-img {
+    flex: none;
+    width: 100%;
+  }
+  
+  .overlay-img img { 
+    max-height: 50vh; /* Giới hạn chiều cao ảnh trên mobile để dành chỗ cho ghi chú */
+  }
+
+  .overlay-info {
+    flex: none;
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #eee; /* Đường kẻ ngăn cách nằm ngang */
+    padding: 20px;
+  }
+}
+}
