@@ -39,8 +39,26 @@ header {
   position: relative;
 }
 
-header h1 {
-  margin-right: 30px;
+@keyframes icon_glow {
+  0% {
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0);
+  }
+  50% {
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0);
+  }
+}
+
+header .icon {
+  width: 3rem;
+  height: auto;
+  border-radius: 50%;
+  animation-name: icon_glow;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 header nav {
@@ -201,7 +219,7 @@ nav a:hover {
   color: inherit;
   transition: transform 0.3s;
 }
-.card:hover { transform: translateY(-5px); }
+.card:hover { transform: rotate(4deg) scale(1.05);}
 .card img { width: 100%; height: 250px; object-fit: cover; }
 .card p { padding: 20px; text-align: center; font-weight: bold; }
 
@@ -210,7 +228,7 @@ nav a:hover {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0,0,0,0.9);
+  background: rgba(0,0,0,0.7);
   z-index: 2000;
   display: flex;
   justify-content: center;
@@ -227,33 +245,62 @@ nav a:hover {
 .overlay:target {
   opacity: 1;
   visibility: visible;
-}
+} 
 
 .overlay-content {
   background: white;
-  max-width: 80%;
-  width: 100%;
+  width: 95%; /* Tăng chiều rộng tổng thể của khung overlay trên máy tính */
+  max-width: 1100px; /* Giới hạn chiều rộng tối đa để không quá tràn màn hình */
+  height: auto;
   max-height: 90%;
   display: flex;
+  flex-direction: row; 
   border-radius: 20px;
   overflow: hidden;
   position: relative;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
 }
 
-.overlay-img { flex: 1.5; background: #000; display: flex; align-items: center; justify-content: center; }
-.overlay-img img { max-width: 100%; max-height: 85vh; object-fit: contain; }
+.overlay-img { 
+  flex: 0 0 60%; /* Ảnh chiếm tối đa 60%, không cho phép nó lấn át thêm */
+  background: #000; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+}
 
-.overlay-info { flex: 1; padding: 40px; border-left: 1px solid #eee; overflow-y: auto; word-break: break-word; }
+.overlay-img img { 
+  display: block;  
+  width: 100%; /* Ép ảnh co lại theo chiều rộng của container */
+  height: 80vh;
+  object-fit: contain; /* Giữ nguyên tỉ lệ ảnh không bị méo */
+}
+
+.overlay-info { 
+  flex: 0 0 40%; /* Đảm bảo phần chữ luôn có ít nhất 40% diện tích */
+  padding: 40px; 
+  border-left: 1px solid #eee; 
+  overflow-y: auto; 
+  word-break: break-word; 
+  background-color: white; /* Đảm bảo nền trắng để dễ đọc */
+}
 .overlay-info h2 { margin-bottom: 20px; color: #1e1e2f; }
 
 .close-btn {
   position: absolute;
-  top: 15px; right: 20px;
-  font-size: 35px;
+  top: 15px; right: 15px;
+  font-size: 28px;
   color: #333;
+  background: rgba(255, 255, 255, 0.9);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
   text-decoration: none;
-  line-height: 1;
-  z-index: 10;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
 footer {
@@ -263,6 +310,10 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+footer .footer-info p {
+  font-size: 1rem;
 }
 
 footer .socials {
@@ -277,7 +328,24 @@ footer .socials a {
 }
 
 /* RESPONSIVE: Khi màn hình nhỏ hơn 900px */
-@media (max-width: 900px) {
+@media (max-width: 720px) {
+  /* 1. Giảm kích thước chữ gốc */
+  html, body {
+    font-size: 16px; /* Giảm từ 20px xuống 16px */
+  }
+
+  h1 {
+    font-size: 1.5rem; /* Tiêu đề nhỏ lại (tương đương 24px) */
+  }
+  
+  p {
+    font-size: 1rem;
+  }
+
+  .hero-box {
+    padding: 20px; /* Giảm padding khung hero */
+  }
+
   .year-content, .year-content.reverse {
     flex-direction: column;
     text-align: center;
@@ -304,29 +372,57 @@ footer .socials a {
     padding: 10px;
   }
 
-  @media (max-width: 800px) {
-  /* Cho phép nội dung overlay xếp chồng theo chiều dọc trên mobile */
+  /* 2. Tinh chỉnh Overlay cho gọn hơn trên điện thoại */
+  .overlay {
+    padding: 10px; /* Giảm lề ngoài */
+  }
+
   .overlay-content { 
     flex-direction: column; 
-    overflow-y: auto; 
-    max-height: 95vh;
+    width: 100%;
+    max-height: 85vh; /* Chiều cao tối đa ngắn hơn chút */
   }
   
   .overlay-img {
     flex: none;
     width: 100%;
+    height: auto;
   }
   
   .overlay-img img { 
-    max-height: 50vh; /* Giới hạn chiều cao ảnh trên mobile để dành chỗ cho ghi chú */
+    max-height: 35vh; /* Giới hạn chiều cao ảnh (khoảng 1/3 màn hình) */
+    width: 100%;
+    object-fit: contain;
   }
 
   .overlay-info {
-    flex: none;
+    flex: 1; /* Phần còn lại cho chữ */
     width: 100%;
     border-left: none;
-    border-top: 1px solid #eee; /* Đường kẻ ngăn cách nằm ngang */
-    padding: 20px;
+    border-top: 1px solid #eee;
+    padding: 20px; /* Giảm padding từ 40px xuống 20px */
+    display: block; /* Bỏ flex center để nội dung trôi tự nhiên */
   }
-}
+
+  .overlay-info h2 {
+    font-size: 1.3rem; /* Tiêu đề trong overlay nhỏ lại */
+    margin-bottom: 10px;
+  }
+
+  /* Nút đóng nhỏ hơn và sát góc hơn */
+  .close-btn {
+    top: 10px; 
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+  }
+
+  /* Footer xếp dọc */
+  footer {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    padding: 30px 20px;
+  }
 }
