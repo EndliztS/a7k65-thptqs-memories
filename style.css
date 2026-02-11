@@ -96,10 +96,10 @@ nav a:hover {
 }
 
 /* Các hình nền cụ thể cho từng trang */
-.hero-home { background-image: url("https://images.unsplash.com/photo-1529070538774-1843cb3265df"); }
-.hero-10 { background-image: url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b"); }
-.hero-11 { background-image: url("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b"); }
-.hero-12 { background-image: url("https://images.unsplash.com/photo-1529070538774-1843cb3265df"); }
+.hero-home { background-image: url("images/hero.png"); }
+.hero-10 { background-image: url("images/10/bg.png"); }
+.hero-11 { background-image: url("images/11/bg.jpg"); }
+.hero-12 { background-image: url("images/12/bg.jpg"); }
 
 .hero-box {
   background: none;
@@ -175,9 +175,9 @@ nav a:hover {
   color: white;
 }
 
-.year-10 { background-image: url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b"); }
-.year-11 { background-image: url("https://images.unsplash.com/photo-1523580846011-d3a5bc25702b"); }
-.year-12 { background-image: url("https://images.unsplash.com/photo-1529070538774-1843cb3265df"); }
+.year-10 { background-image: url("images/10/bg.png"); }
+.year-11 { background-image: url("images/11/bg.jpg"); }
+.year-12 { background-image: url("images/12/bg.jpg"); }
 
 .block {
   text-align: center;
@@ -250,7 +250,7 @@ nav a:hover {
 .overlay-content {
   background: white;
   width: 95%; /* Tăng chiều rộng tổng thể của khung overlay trên máy tính */
-  max-width: 1100px; /* Giới hạn chiều rộng tối đa để không quá tràn màn hình */
+  max-width: 80%; /* Giới hạn chiều rộng tối đa để không quá tràn màn hình */
   height: auto;
   max-height: 90%;
   display: flex;
